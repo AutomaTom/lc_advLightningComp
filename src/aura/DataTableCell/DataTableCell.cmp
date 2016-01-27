@@ -1,0 +1,17 @@
+<aura:component >
+    <aura:attribute access="public" name="row" type="Object" required="true"/>
+    <aura:attribute access="public" name="column" type="Aura.Component" required="true"/> 
+	<aura:attribute access="private" name="isDrilldown" type="String"/>
+    <aura:attribute access="private" name="value" type="String"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <td data-label="{!v.value}">
+    	<span class="slds-truncate">
+            <aura:if isTrue="{!v.isDrilldown}">
+                <ui.outputURL label="{!v.value}" value=""/>
+                <aura:set attribute="else">
+                    <ui.outputText value="{!v.value}"/>
+                </aura:set>
+            </aura:if>
+        </span>
+	</td>
+</aura:component>

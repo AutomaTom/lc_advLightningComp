@@ -1,0 +1,31 @@
+<aura:component >
+    <aura:attribute access="public" name="name" type="String" required="true"/>
+    <aura:attribute access="public" name="label" type="String" required="true"/>
+    <aura:attribute access="public" name="isSortable" type="Boolean" default="false"/>
+    <aura:attribute access="public" name="isDrilldown" type="Boolean" default="false"/>
+    <aura:attribute access="private" name="sortDescending" type="Boolean"/>
+    <aura:registerEvent name="sortEvent" type="c:DataTableSortEvent"/>
+
+    <aura:if isTrue="{!v.isSortable}">
+    	<!-- Sortable Column Header -->
+        <th class="slds-is-sortable" scope="col" >
+			<span class="slds-truncate" data-column-name="{!v.name}" onclick="{!c.fireSortEvent}">{!v.label}</span>
+            <button class="slds-button slds-button--icon-bare">  
+                <aura:if isTrue="{!v.sortDescending}">
+                	<c:svg ariaHidden="true" class="slds-button__icon slds-button__icon--small" xlinkHref="/resource/slds0121/assets/icons/utility-sprite/svg/symbols.svg#arrowup"/>
+                	<aura:set attribute="else">
+                        <c:svg ariaHidden="true" class="slds-button__icon slds-button__icon--small" xlinkHref="/resource/slds0121/assets/icons/utility-sprite/svg/symbols.svg#arrowdown"/>
+                    </aura:set>
+                </aura:if>
+                <span class="slds-assistive-text">Sort</span>
+            </button>
+		</th>
+        <!-- Non-Sortable Column Header -->
+        <aura:set attribute="else">
+            <th scope="col">
+                <span class="slds-truncate">{!v.label}</span>
+            </th>
+        </aura:set>  
+    </aura:if>
+    
+</aura:component>

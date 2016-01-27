@@ -1,0 +1,4 @@
+<aura:event type="COMPONENT" description="A Data Table sort event">
+    <aura:attribute name="columnName" type="String"/>
+    <aura:attribute name="sortDescending" type="Boolean"/>
+</aura:event>

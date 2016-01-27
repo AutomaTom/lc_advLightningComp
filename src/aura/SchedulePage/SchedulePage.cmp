@@ -1,0 +1,65 @@
+<aura:component controller="SchedulePageController">
+    <aura:attribute access="private" name="modal" type="Aura.Component"/>
+    <aura:attribute access="private" name="events" type="Event[]"/>
+    <aura:attribute access="private" name="selectedEvents" type="Event[]" default="[]"/>
+    <aura:attribute access="private" name="orderBy" type="String"/>
+    <aura:attribute access="private" name="newEvent" type="Event" default="{}"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="sortEvent" event="c:DataTableSortEvent" action="{!c.handleSortEvent}"/>
+    
+	<div class="slds-grid slds-theme--alt-inverse slds-p-around--large">
+        <h1 class="slds-text-heading--medium slds-truncate">Schedule</h1>
+    </div>
+    
+    <div class="slds-grid slds-m-around--large">
+        <div class="slds-col slds-has-flexi-truncate">
+            <p>We aim to bring you a broad spectrum of sessions across a multitude of subject areas. This list is constantly being updated so please check back regularly to see what other amazing sessions we have arranged for you.</p>
+        </div>
+    </div>
+    
+    <c:DataTable aura:id="dataTable" rows="{!v.events}" showCheckboxes="true" 
+                 selectedRows="{!v.selectedEvents}">
+        <aura:set attribute="columns">
+            <c:DataTableColumn name="Subject" label="Subject" isSortable="true" isDrilldown="true"/>
+            <c:DataTableColumn name="Description" label="Description"/>
+            <c:DataTableColumn name="StartDateTime" label="Start"/>
+            <c:DataTableColumn name="EndDateTime" label="End"/> 
+        </aura:set>
+    </c:DataTable> 
+    
+    <div class="slds-text-align--right slds-m-around--small">
+        <button class="slds-button slds-button--brand" onclick="{!c.openModal}"> 
+            Add <c:svg ariaHidden="true" class="slds-button__icon slds-button__icon--small" xlinkHref="/resource/slds0121/assets/icons/utility-sprite/svg/symbols.svg#add"/>
+        </button>
+        <button class="slds-button slds-button--destructive " onclick="{!c.deleteSelectedEvents}"> 
+            Delete <c:svg ariaHidden="true" class="slds-button__icon slds-button__icon--small" xlinkHref="/resource/slds0121/assets/icons/utility-sprite/svg/symbols.svg#delete"/>
+        </button>
+    </div>
+
+    <c:Modal aura:id="newEventModal" okAction="{!c.insertNewEvent}" cancelAction="{!c.cancelNewEvent}" 
+             closeAction="{!c.cancelNewEvent}">
+        <aura:set attribute="header">
+            <h2>New Event</h2>
+        </aura:set>
+        <c:Form aura:id="newEventForm">
+            <c:FormElement aura:id="Subject" required="true">
+                <ui:inputText class="slds-input" label="Subject" labelClass="slds-form-element__label" 
+                              value="{!v.newEvent.Subject}"/>
+            </c:FormElement>
+            <c:FormElement aura:id="Description">
+                <ui:inputTextArea class="slds-textarea" label="Description" 
+                                  labelClass="slds-form-element__label" rows="2" 
+                                  value="{!v.newEvent.Description}"/>
+            </c:FormElement>
+            <c:FormElement aura:id="StartDateTime" required="true">
+                <ui:inputDateTime class="slds-input" label="Start" labelClass="slds-form-element__label" 
+                                  value="{!v.newEvent.StartDateTime}" displayDatePicker="true"/>
+            </c:FormElement>
+            <c:FormElement aura:id="EndDateTime" required="true">
+                <ui:inputDateTime class="slds-input" label="End" labelClass="slds-form-element__label" 
+                                  value="{!v.newEvent.EndDateTime}" displayDatePicker="true"/>
+            </c:FormElement>
+        </c:Form>
+    </c:Modal>
+    
+</aura:component>

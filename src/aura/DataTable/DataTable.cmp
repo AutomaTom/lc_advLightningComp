@@ -1,0 +1,33 @@
+<aura:component >
+    <aura:attribute access="public" name="showCheckboxes" type="Boolean" default="true"/>
+    <aura:attribute access="public" name="rows" type="Object[]" required="true"/>
+    <aura:attribute access="public" name="columns" type="Aura.Component[]" required="true"/>
+    <aura:attribute access="public" name="selectedRows" type="Object[]" default="[]"/>
+    <aura:attribute access="private" name="selectAll" type="Boolean" default="false"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="click" event="ui:click" action="{!c.handleClickEvent}"/>
+	<table class="slds-table slds-table--bordered">
+  		<thead>    
+            <tr class="slds-text-heading--label">
+                <aura:if isTrue="{!v.showCheckboxes}">
+                    <th class="slds-cell-shrink" scope="col">
+                        <label class="slds-checkbox">
+                            <ui:inputCheckbox aura:id="selectAll" class="slds-checkbox" value="{!v.selectAll}"/>
+                            <span class="slds-checkbox--faux"></span>
+                        </label>
+                    </th>  
+                </aura:if>
+				{!v.columns}
+            </tr>      
+  		</thead>
+  		<tbody>
+            <aura:iteration items="{!v.rows}" var="row" indexVar="rowIndex">
+                <c:DataTableRow aura:id="dataTableRow" row="{!row}" showCheckbox="{!v.showCheckboxes}">
+                    <aura:iteration items="{!v.columns}" var="column">
+                        <c:DataTableCell row="{!row}" column="{!column}"/>
+                    </aura:iteration>
+                </c:DataTableRow>
+            </aura:iteration>
+  		</tbody>
+	</table>
+</aura:component>

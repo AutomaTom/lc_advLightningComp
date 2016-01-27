@@ -1,0 +1,17 @@
+<aura:component >
+	<aura:attribute access="public" name="row" type="Object" required="true"/>
+    <aura:attribute access="public" name="selected" type="Boolean" default="false"/>
+    <aura:attribute access="public" name="showCheckbox" type="Boolean" required="true"/>
+    
+    <tr class="slds-hint-parent">
+        <aura:if isTrue="{!v.showCheckbox}">
+            <td class="slds-row-select">
+                <label class="slds-checkbox">
+                    <ui:inputCheckbox class="slds-checkbox" value="{!v.selected}"/>
+                    <span class="slds-checkbox--faux"></span>
+                </label>
+            </td>  
+        </aura:if>
+        {!v.body}
+    </tr>
+</aura:component>

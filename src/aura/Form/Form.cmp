@@ -1,0 +1,5 @@
+<aura:component >
+    <div class="slds-form--stacked slds-m-around--small">
+		{!v.body}
+    </div>
+</aura:component>

@@ -1,1 +1,2 @@
-# lc_advLightningComp
+# London's Calling - Advanced Programming with Lightning Components
+This is the source code for the app which demonstrates the programming concepts talked about in the Advanced Programming with Lightning Components session at the London's Calling event

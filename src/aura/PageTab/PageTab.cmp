@@ -1,0 +1,20 @@
+<aura:component >
+    <aura:attribute access="private" name="anchorClass" type="String" default=""/>
+    <aura:attribute access="public" name="anchorStyleClass" type="String" default="slds-p-around--medium slds-m-right--xx-small"/>
+    <aura:attribute access="public" name="focus" type="Boolean" default="false"/>
+    <aura:attribute access="public" name="label" type="String" required="true"/>
+    <aura:attribute access="public" name="mouseoutStyleClass" type="String" default=""/>
+    <aura:attribute access="public" name="mouseoverStyleClass" type="String" default="slds-theme--alt-inverse"/>
+    <aura:attribute access="private" name="mouseover" type="Boolean" default="false"/>
+    <aura:attribute access="public" name="target" type="String" required="true"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:registerEvent name="tabClick" type="c:Click"/>
+    <aura:registerEvent name="navigateToPage" type="c:NavigateToPage"/>
+    <aura:handler name="click" event="ui:click" action="{!c.handleClickEvent}"/>
+    <aura:handler name="mouseout" event="ui:mouseout" action="{!c.handleMouseoutEvent}"/>
+    <aura:handler name="mouseover" event="ui:mouseover" action="{!c.handleMouseoverEvent}"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <li class="slds-list__item">
+        <ui:outputURL aura:id="tab" class="{!v.anchorClass}" label="{!v.label}" value=""/>
+    </li>
+</aura:component>

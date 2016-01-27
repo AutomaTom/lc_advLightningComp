@@ -1,0 +1,10 @@
+<aura:component >
+    <aura:attribute access="public" name="pageTabs" type="Object[]"/>
+	<aura:handler name="tabClick" event="c:Click" action="{!c.handleClickEvent}"/>
+    <ul class="slds-list--horizontal slds-has-inline-block-links--space slds-has-selection">
+		<aura:iteration items="{!v.pageTabs}" var="pageTab">
+            <c:PageTab aura:id="pageTab" label="{!pageTab.label}" target="{!pageTab.target}" 
+                       focus="{!pageTab.focus}"/>
+        </aura:iteration>
+    </ul>  
+</aura:component>

@@ -1,0 +1,11 @@
+<aura:component >
+	<div class="slds-grid slds-theme--alt-inverse slds-p-around--large">
+        <h1 class="slds-text-heading--medium slds-truncate">London's Calling</h1>
+    </div>
+    <div class="slds-grid slds-m-around--large">
+        <div class="slds-col slds-has-flexi-truncate">
+            <h1 class="slds-text-heading--medium slds-truncate" title="Welcome">Europe's biggest event</h1>
+            <p>London's Calling is the first European Salesforce.com event independently organised by the community. It will take place in London on the 5th February 2016. You will not want to miss this exciting educational event where you can meet and network with all the influential people in the community. Bookmark this page for further updates as we continue to add speakers and activities.</p>
+        </div>
+    </div>
+</aura:component>
